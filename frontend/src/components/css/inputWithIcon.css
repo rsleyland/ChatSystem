@@ -1,0 +1,45 @@
+.input-with-icon {
+    position: relative;
+    padding: 0 5px;
+}
+.input-with-icon i {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    font-size: 18px;
+    color: var(--bs-secondary);
+}
+.input-with-icon label {
+    color: var(--bs-secondary);
+}
+.input-with-icon input  {
+    border-radius: 10px 10px 10px 10px;
+}
+.input-with-icon small  {
+    color: var(--bs-danger)!important;
+    display: none;
+}
+.input-with-icon i.password:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+.input-with-icon.is_invalid input  {
+    border-color: var(--bs-danger);
+    color: var(--bs-danger);
+}
+.input-with-icon.is_invalid label  {
+    color: var(--bs-danger);
+}
+.input-with-icon.is_invalid i {
+    color: var(--bs-danger);
+}
+.input-with-icon.is_invalid small {
+    display: block;
+}
+
+.input-with-icon select  {
+    cursor: pointer;
+}
+.input-with-icon select.no-select-caret {
+    background-image: none !important;
+  }
