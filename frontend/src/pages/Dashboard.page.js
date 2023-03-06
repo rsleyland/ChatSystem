@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Header } from '../components/navigation/Header.js';
 import { Messenger } from "./Messenger.page"
+import { MessengerProvider } from '../components/messenger/MessengerProvider'
 
 
 const Dashboard = () => {
@@ -11,13 +12,15 @@ const Dashboard = () => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    useEffect(() => {if (!userInfo) navigate('/login')}, [userInfo]);
+    useEffect(() => { if (!userInfo) navigate('/login') }, [userInfo]);
 
     return (
-        
+
         <Container fluid className="bg-dark min-vh-100 p-0">
-            <Header />
-            <Messenger />
+            {userInfo && <>
+                <MessengerProvider />
+                <Header />
+                <Messenger /></>}
         </Container>
     );
 }

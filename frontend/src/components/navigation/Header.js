@@ -2,7 +2,7 @@ import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../../redux/actions/userActions";
-
+import "./header.css"
 
 
 
@@ -20,10 +20,9 @@ const Header = () => {
                 <LinkContainer to="/">
                     <Navbar.Brand>Chat System</Navbar.Brand>
                 </LinkContainer>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Nav className="ms-auto">
+                    <Nav className="ms-auto text-white">
                         {userInfo ? (
-                            <NavDropdown title={userInfo.email} id="username">
+                            <NavDropdown className="header-dropdown" title={userInfo.email} id="username">
                                 <LinkContainer to="/dashboard">
                                     <NavDropdown.Item>Dashboard</NavDropdown.Item>
                                 </LinkContainer>

@@ -55,7 +55,6 @@ const Messenger = () => {
     const [selectedUsers, setSelectedUsers] = useState([])
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         getUsers();
     }, [])
@@ -140,7 +139,7 @@ const Messenger = () => {
             }
             return msg
         }
-        _chats[i].messages.forEach(msg => (msg.from_user != userInfo._id) ? readAndIncremement(msg) : null);
+        _chats[i].messages.forEach(msg => (msg.from_user != userInfo.id) ? readAndIncremement(msg) : null);
         setChatRead(i);
         dispatch({
             type: MESSENGER_NOTIFICATIONS_SUCCESS,
@@ -198,7 +197,7 @@ const Messenger = () => {
     useEffect(() => {
         if (filteredChats) {
             if (chatAdded.length == 1) {
-                let index = _chats.findIndex((c) => (c.participants[0]._id == chatAdded[0]))
+                let index = _chats.findIndex((c) => (c.participants[0].id == chatAdded[0]))
                 setSelectedChatIndex(index);
                 setMenuSelection("chats")
                 setChatAdded([])
@@ -206,7 +205,7 @@ const Messenger = () => {
             else if (chatAdded.length > 1) {
                 const findIndexHelper = (c) => {
                     let participants = c.participants
-                    let p_ids = participants.map(p => p._id)
+                    let p_ids = participants.map(p => p.id)
                     if (p_ids.length != chatAdded.length) return false
                     for (let i = 0; i < p_ids.length; ++i) {
                         if (chatAdded.includes(p_ids[i]) === false) return false;
@@ -299,7 +298,7 @@ const Messenger = () => {
             <Row className="h-100">
 
                 {/* CHAT MENU CHOICES */}
-                <Col xl={1} className="border-end border-1 flex-column align-items-center d-none d-xl-flex pt-5">
+                <Col xl={1} className="border-end border-1 border-light flex-column align-items-center d-none d-xl-flex pt-5">
                     <h5 data-content="Chats" onClick={() => setMenuSelection("chats")} className={"hover-chat-item hover-chat-item-tooltip mb-4 py-3 px-4 rounded " + (menuSelection == "chats" ? "text-primary" : "")} style={menuSelection == "chats" ? { backgroundColor: "rgba(0, 0, 0, 0.15" } : {}}><i className="fas fa-comments"></i></h5>
                     <h5 data-content="Users" onClick={() => setMenuSelection("users")} className={"hover-chat-item hover-chat-item-tooltip mb-4 py-3 px-4 rounded " + (menuSelection == "users" ? "text-success" : "")} style={menuSelection == "users" ? { backgroundColor: "rgba(0, 0, 0, 0.15" } : {}}><i className="fas fa-user"></i></h5>
                     {/* <h5 data-content="Favourites" onClick={() => setMenuSelection("favourites")} className={"hover-chat-item hover-chat-item-tooltip mb-4 py-3 px-4 rounded " + (menuSelection == "favourites" ? "text-warning" : "")} style={menuSelection == "favourites" ? { backgroundColor: "rgba(0, 0, 0, 0.15" } : {}}><i className="fas fa-star"></i></h5> */}
@@ -307,7 +306,7 @@ const Messenger = () => {
 
 
                 {/* SELECTED SUB MENU */}
-                <Col xs={12} lg={4} xl={3} className={selectedChatIndex >= 0 ? "d-none d-lg-flex border-end border-1 flex-column align-items-center pt-3 pe-0 ps-0" : "border-end border-1 flex-column align-items-center pt-3 pe-0 ps-0 d-flex"}>
+                <Col xs={12} lg={4} xl={3} className={selectedChatIndex >= 0 ? "d-none d-lg-flex border-end border-1 border-light flex-column align-items-center pt-3 pe-0 ps-0" : "border-end border-1 border-light flex-column align-items-center pt-3 pe-0 ps-0 d-flex"}>
 
                     {/* CHAT SUBMENU */}
                     {menuSelection == "chats" && <>
@@ -336,7 +335,7 @@ const Messenger = () => {
                                 setInputValues={setInputValues}
                                 type="text"
                                 error={inputErrors.search}
-                                style={{ maxHeight: '46px', marginTop: '5px' }}
+                                style={{ maxHeight: '46px', marginTop: '5px', backgroundColor: "rgba(0,0,0,0.3)", color: "white" }}
                                 loading={loading}
                             />
 
@@ -382,7 +381,7 @@ const Messenger = () => {
                                 {/* <p data-content="Favourites" onClick={() => setMenuSelection("favourites")} className={"hover-chat-item hover-chat-item-tooltip m-0 mx-2 py-2 px-2 rounded " + (menuSelection == "favourites" ? "text-warning" : "")} style={menuSelection == "favourites" ? { backgroundColor: "rgba(0, 0, 0, 0.15" } : {}} ><i className="fas fa-star"></i></p> */}
                             </div>
                             <div className="d-flex justify-content-between">
-                                <h4 className="mb-3">Users</h4>
+                                <h4 className="mb-3 text-white">Users</h4>
                                 {/* <h6 data-content="Add user" className="me-2 p-2 rounded border hover-chat-item  hover-chat-item-tooltip-small"><i className="fas fa-user-plus"></i></h6> */}
                             </div>
                             <InputWithIcon
@@ -393,7 +392,7 @@ const Messenger = () => {
                                 setInputValues={setInputValues}
                                 type="text"
                                 error={inputErrors.search_users}
-                                style={{ maxHeight: '46px', marginTop: '5px' }}
+                                style={{ maxHeight: '46px', marginTop: '5px', backgroundColor: "rgba(0,0,0,0.3)", color: "white" }}
                                 loading={loadingUsers}
                             />
                         </div>

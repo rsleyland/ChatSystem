@@ -65,7 +65,7 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0 }) => {
                     {!showOptions && <p style={{ padding: "1px 8px" }} className={'text-white bg-primary rounded-circle new-msg-counter'}>{new_msg_count < 100 ? new_msg_count : "99+"}</p>}
                     <div onClick={e => e.stopPropagation()}>
                         {showOptions && <Dropdown className="chat-list-item-options-behind-counter">
-                            <Dropdown.Toggle ><i className="fas fa-ellipsis"></i></Dropdown.Toggle>
+                            <Dropdown.Toggle ><i className="fas fa-ellipsis text-white"></i></Dropdown.Toggle>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="#" onClick={() => setShowProfile(true)}><i className="fas fa-user me-2 text-success"></i> Profile</Dropdown.Item>
                                 <Dropdown.Item href="#" onClick={() => setShowDelete(true)}><i className="fas fa-trash me-2 text-danger"></i> Delete Chat</Dropdown.Item>
@@ -77,7 +77,7 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0 }) => {
                     <>
                         <div onClick={e => e.stopPropagation()}>
                             <Dropdown className="chat-list-item-options">
-                                <Dropdown.Toggle ><i className="fas fa-ellipsis"></i></Dropdown.Toggle>
+                                <Dropdown.Toggle ><i className="fas fa-ellipsis text-white"></i></Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="#" onClick={() => setShowProfile(true)}><i className="fas fa-user me-2 text-success"></i> Profile</Dropdown.Item>
                                     <Dropdown.Item href="#" onClick={() => setShowDelete(true)}><i className="fas fa-trash me-2 text-danger"></i> Delete Chat</Dropdown.Item>

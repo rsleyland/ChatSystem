@@ -113,7 +113,7 @@ const ChatWindow = ({ chat_name, friend, setSelectedChatIndex }) => {
                         setInputValues={setInputValues}
                         type="text"
                         error={inputErrors.message}
-                        style={{ maxHeight: '46px', marginTop: '5px' }}
+                        style={{ maxHeight: '46px', marginTop: '5px', backgroundColor: "rgba(0,0,0,0.3)", color: "white" }}
                         value={inputValues["message"]}
                         autoFocus={true}
                     />

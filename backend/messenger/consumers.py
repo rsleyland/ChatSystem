@@ -15,7 +15,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.chat_name = self.scope["url_route"]["kwargs"]["name"]
 
-
         # CHECK if user token is valid (authenticated)
         try:
             query_params = parse_qs(self.scope["query_string"].decode())
