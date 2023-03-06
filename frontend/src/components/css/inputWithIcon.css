@@ -1,8 +1,14 @@
 .input-with-icon {
     position: relative;
-    padding: 0 5px;
 }
 .input-with-icon i {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    font-size: 18px;
+    color: var(--bs-secondary);
+}
+.input-with-icon .input-loading-icon {
     position: absolute;
     right: 15px;
     top: 20px;

@@ -15,21 +15,20 @@ const Header = () => {
     }
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+        <Navbar bg="dark" variant="dark" style={{height: "60px"}}>
             <Container>
                 <LinkContainer to="/">
-                    <Navbar.Brand>Company</Navbar.Brand>
+                    <Navbar.Brand>Chat System</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         {userInfo ? (
                             <NavDropdown title={userInfo.email} id="username">
-                                <LinkContainer to="/settings">
-                                    <NavDropdown.Item>Settings</NavDropdown.Item>
-                                </LinkContainer>
                                 <LinkContainer to="/dashboard">
                                     <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to="/settings">
+                                    <NavDropdown.Item>Settings</NavDropdown.Item>
                                 </LinkContainer>
                                 <NavDropdown.Item onClick={userLogout}>Logout</NavDropdown.Item>
                             </NavDropdown>
@@ -37,7 +36,6 @@ const Header = () => {
                                 <Nav.Link><i className="fas fa-user"></i> Sign In</Nav.Link>
                             </LinkContainer>}
                     </Nav>
-                </Navbar.Collapse>
             </Container>
         </Navbar>
     )

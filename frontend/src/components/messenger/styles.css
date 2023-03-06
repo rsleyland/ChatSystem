@@ -1,0 +1,109 @@
+.hover-chat-item {
+    color: white;
+}
+.hover-chat-item:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+.hover-chat-item:active {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.hover-chat-item-friends:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 10px;
+    position: relative;
+}
+
+.hover-chat-item-tooltip:hover::after {
+    content: attr(data-content);
+    font-size: 12px;
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    padding: 2px 5px;
+}
+.hover-chat-item-tooltip-small:hover::after {
+    content: attr(data-content);
+    font-size: 11px;
+    position: absolute;
+    bottom: -20px;
+    left: -12px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+}
+.hover-chat-item-tooltip-small2:hover::after {
+    content: attr(data-content);
+    font-size: 11px;
+    position: absolute;
+    bottom: -20px;
+    left: -22px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+}
+.hover-chat-item-tooltip-add-lg:hover::after {
+    content: attr(data-content);
+    font-size: 12px;
+    position: absolute;
+    bottom: -25px;
+    left: -14px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-list-item-options {
+    z-index: 20;
+    visibility: hidden;
+}
+.hover-chat-item:hover .chat-list-item-options {
+    visibility: visible;
+}
+.hover-chat-item-friends:hover .chat-list-item-options {
+    visibility: visible;
+}
+
+.chat-list-item-options-behind-counter {
+    z-index: 30;
+}
+
+.dropdown-toggle {
+    padding: 0px 5px!important;
+    margin-bottom: 5px!important;
+    margin-top: 5px!important;
+    background-color: transparent!important;
+    border: none!important;
+    color: black!important;
+    font-size: 20px!important;
+}
+
+.dropdown-toggle:hover {
+    color: gray!important;
+}
+
+.dropdown-toggle::after {
+    display: none!important;
+}
+
+.selected-neighbor {
+    background-color: rgba(0,100,0,0.3);
+    border-radius: 10px;
+}
+.no-select-hl{
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.selected-neighbor:hover {
+    background-color: rgba(0,100,0,0.4);
+}

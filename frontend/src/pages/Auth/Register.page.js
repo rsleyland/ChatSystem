@@ -209,7 +209,7 @@ const Register = () => {
                             />
                         </Stack>
                         <Stack direction="horizontal" className="justify-content-center my-3">
-                            <Button type="submit" className="w-75">Register</Button>
+                            <Button type="submit" className="w-75 mb-2">Register</Button>
                         </Stack>
                         <Stack direction="horizontal" className="justify-content-between my-3">
                             <LinkContainer to="/login" role={'button'}>

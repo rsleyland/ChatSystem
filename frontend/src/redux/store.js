@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import { userLoginReducer, userRegisterReducer, 
      userResetPasswordEmailReducer, userResetPasswordChangeReducer, userProfileReducer, userUpdateReducer, userUpdateProfileReducer } from './reducers/userReducer.js';
 import { USER_IN_STORAGE, USER_PROFILE_IN_STORAGE } from './constants/userConstants.js';
+import { messengerChatsReducer, messengerNotificationsReducer } from "./reducers/messengerReducer"
 const CLEAR_ALL_REDUCERS_DATA = 'CLEAR_ALL_REDUCERS_DATA';
 
 
@@ -13,7 +14,9 @@ const reducers = combineReducers({
     userResetPasswordChange: userResetPasswordChangeReducer,
     userProfile: userProfileReducer,
     userUpdate: userUpdateReducer,
-    userUpdateProfile: userUpdateProfileReducer
+    userUpdateProfile: userUpdateProfileReducer,
+    messengerChats: messengerChatsReducer,
+    messengerNotifications: messengerNotificationsReducer
 
 });
 

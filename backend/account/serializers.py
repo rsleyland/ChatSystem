@@ -14,7 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "email", "password", "first_name", "last_name", "is_active", "is_admin", "is_staff"]
+        fields = ["id", "email", "password", "first_name", "last_name", "is_active", "is_admin", "is_staff", "last_login", "date_joined"]
         extra_kwargs = {'password': {'write_only': True}}
 
 # User serializer to convert user model to json
@@ -22,7 +22,7 @@ class UserWithProfileSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
     class Meta:
         model = User
-        fields = ["id", "email", "password", "first_name", "last_name", "is_active", "is_admin", "is_staff", "profile"]
+        fields = ["id", "email", "password", "first_name", "last_name", "is_active", "is_admin", "is_staff", "last_login", "date_joined", "profile"]
         extra_kwargs = {'password': {'write_only': True}}
     
 
@@ -44,7 +44,7 @@ class UserWithJwtTokensSerializer(TokenObtainPairSerializer):
             print(e)
             raise AuthenticationFailed(detail='Invalid credentials')
         
-        serializer = UserSerializer(self.user).data
+        serializer = UserWithProfileSerializer(self.user).data
         for k, v in serializer.items():   #add user data to the tokens
             data[k] = v
 

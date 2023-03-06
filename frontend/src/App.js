@@ -8,6 +8,7 @@ import { PasswordResetRequest } from './pages/Auth/PasswordResetRequest.page.js'
 import { ConfirmEmail } from './pages/Auth/ConfirmEmail.page.js';
 import { Settings } from './pages/Settings.page.js';
 import { AxiosResponseInterceptor, AxiosRequestInterceptor } from './AxiosConfig.js';
+import { MessengerProvider } from './components/messenger/MessengerProvider.js';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   return (
     <Router>
       <main>
+        <MessengerProvider />
         <Container fluid className="p-0 bg-dark" >
           <Routes>
             <Route path="/login" element={<Login />} />

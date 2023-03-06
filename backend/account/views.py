@@ -66,6 +66,7 @@ class UserUpdate(APIView):
             first_name = data.get('first_name')
             last_name = data.get('last_name', user.last_name)
             email = data.get('email')
+            if User.objects.filter(email=email).exists(): raise Exception("Email is taken.")
             serializer = UserSerializer(user, data={"first_name":first_name, "last_name":last_name, "email":email}, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()

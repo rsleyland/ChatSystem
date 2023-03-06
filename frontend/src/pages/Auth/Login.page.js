@@ -155,7 +155,7 @@ const Login = () => {
                             error={inputErrors.password}
                         />
                         <Stack direction="horizontal" className="justify-content-center my-3">
-                            <Button type="submit" className="w-75">Login</Button>
+                            <Button type="submit" className="w-75 mb-2">Login</Button>
                         </Stack>
                         <Stack direction="horizontal" className="justify-content-between my-3">
                             <LinkContainer to="/register" role={'button'}>

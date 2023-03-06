@@ -3,6 +3,7 @@ import { Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Header } from '../components/navigation/Header.js';
+import { Messenger } from "./Messenger.page"
 
 
 const Dashboard = () => {
@@ -14,10 +15,9 @@ const Dashboard = () => {
 
     return (
         
-        <Container fluid className="bg-dark min-vh-100">
+        <Container fluid className="bg-dark min-vh-100 p-0">
             <Header />
-            <h1 className="text-white">Dashboard</h1>
-            <p className="text-white">Welcome </p>
+            <Messenger />
         </Container>
     );
 }

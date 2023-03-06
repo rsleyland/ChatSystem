@@ -171,6 +171,7 @@ const Settings = () => {
                             type="email"
                             value={inputValues.email || ""}
                             error={inputErrors.email}
+                            disabled={true}
                         />
                         <Stack direction="horizontal">
                             <InputWithIcon
