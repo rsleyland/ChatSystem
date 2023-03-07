@@ -10,8 +10,6 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0 }) => {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    const messengerChats = useSelector(state => state.messengerChats);
-    const { chats } = messengerChats;
 
     let today = new Date()
     let date = new Date(data.time || data.user.last_login)
@@ -35,8 +33,7 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0 }) => {
             config
         );
         if (resp.status != 200) return
-
-        let new_chats = chats.filter(c => c.name != data.chat_name)
+        let new_chats = data.chats.filter(c => c.name != data.chat_name)
         if (new_chats.length > 0) {
             dispatch({
                 type: MESSENGER_CHATS_SUCCESS,

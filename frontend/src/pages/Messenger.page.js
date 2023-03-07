@@ -356,7 +356,7 @@ const Messenger = () => {
                                 new_msg_count={unseen_msg_count}
                                 onClick={() => handleChatUserListItemSelected(i)}
                                 key={"chat-list-item-" + i}
-                                data={{ user: chat.participants[0], message: lastMessage, time: time, chat_name: chat.name }}
+                                data={{ user: chat.participants[0], message: lastMessage, time: time, chat_name: chat.name, chats: chats }}
                             />
 
                         }) : loading ? <Spinner animation="border" size="xl" className={"input-loading-icon text-primary"} /> :

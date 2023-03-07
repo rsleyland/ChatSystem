@@ -62,8 +62,8 @@ def create_group_chat(request):
     try:
         user = request.user
         data = request.data
-        neighbor_ids = data.get("neighbor_ids")
-        neighbors = User.objects.filter(id__in=neighbor_ids)
+        friend_ids = data.get("friend_ids")
+        friends = User.objects.filter(id__in=friend_ids)
 
         chats = Chat.objects.all()
         chat = None
@@ -72,7 +72,7 @@ def create_group_chat(request):
             participants = c.participants.all()
             
             if len(participants) < 3: continue
-            if (user in participants and set(neighbors).issubset(participants) and len(participants) == len(set(neighbors))+1):
+            if (user in participants and set(friends).issubset(participants) and len(participants) == len(set(friends))+1):
                 already_exists = True
                 chat = c
 
@@ -83,8 +83,8 @@ def create_group_chat(request):
         chat = Chat.objects.create()
         chat.name = "chat_"+str(chat.id)
         chat.participants.add(user)
-        for neighbor in neighbors:
-            chat.participants.add(neighbor)
+        for friend in friends:
+            chat.participants.add(friend)
         chat.save()
         serializer = ChatSerializer(chat, context={'user_id': user.id})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
