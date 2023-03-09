@@ -65,12 +65,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         
         #send notification
-        receiver_id = await self.get_receiver(user)
-        notification_group_name = str(receiver_id) + "__notifications"
-        await self.channel_layer.group_send(
-            notification_group_name, {"type": "send_chats",
-                             "chats": "to_be_filled"}
-        )
+        receiver_ids = await self.get_receivers(user)
+        for i in range(len(receiver_ids)):
+            notification_group_name = str(receiver_ids[i]['id']) + "__notifications"
+            await self.channel_layer.group_send(
+                notification_group_name, {"type": "send_chats",
+                                "chats": "to_be_filled"}
+            )
 
     async def send_chat_message(self, event):
         message = event["message"]
@@ -92,9 +93,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return User.objects.get(id=id)
     
     @database_sync_to_async
-    def get_receiver(self, user):
+    def get_receivers(self, user):
         serializer = ChatSerializer(self.chat, context={"user_id":user.id})
-        return serializer.data['participants'][0]['id']
+        return serializer.data['participants']
 
     @database_sync_to_async
     def create_chat_message(self, user, message):

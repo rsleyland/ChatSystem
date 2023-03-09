@@ -4,15 +4,28 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { MESSENGER_CHATS_CLEAR, MESSENGER_CHATS_SUCCESS } from '../../redux/constants/messengerConstants'
+import LinesEllipsis from 'react-lines-ellipsis'
+import responsiveHOC from 'react-lines-ellipsis/lib/responsiveHOC'
+const ResponsiveEllipsis = responsiveHOC()(LinesEllipsis)
 
-const ChatUserListItem = ({ data, onClick, new_msg_count = 0, setSelectedChatIndex }) => {
+const ChatGroupListItem = ({ data, onClick, new_msg_count = 0, setSelectedChatIndex }) => {
 
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
+    const getMostRecentFriends = () => {
+        let most_recent = 0;
+        for (let i = 1; i < data.friends.length; i++) {
+            let next_date = new Date(data.friends[i].last_login)
+            if (next_date > new Date(data.friends[most_recent].last_login)) {
+                most_recent = i
+            }
+        }
+        return most_recent;
+    };
 
     let today = new Date()
-    let date = new Date(data.time || data.friend.last_login)
+    let date = data.time ? new Date(data.time) : new Date(data.friends[getMostRecentFriends()].last_login)
     let online_today = (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear())
     const [showOptions, setShowOptions] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
@@ -29,7 +42,7 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0, setSelectedChatInd
         };
         const resp = await axios.post(
             "/api/messenger/delete-chat/",
-            {chat_name: data.chat_name},
+            { chat_name: data.chat_name },
             config
         );
         if (resp.status != 200) return
@@ -49,12 +62,32 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0, setSelectedChatInd
         }
     }
 
+    const concatNames = () => {
+        let names = "";
+        for (let i = 0; i < data.friends.length; i++) {
+            if (names === "") {
+                names = data.friends[i].first_name
+            }
+            else {
+                names = names + " & " + data.friends[i].first_name
+            }
+        }
+        return names;
+    }
+
     return (<>
         <div onMouseEnter={() => setShowOptions(true)} onMouseLeave={() => setShowOptions(false)} className="d-flex align-items-center justify-content-between w-100 p-2 px-4 px-lg-3 border-bottom border-1 hover-chat-item" onClick={onClick}>
             <div className="d-flex align-items-center w-75">
-                <img src={data.friend.profile.image} height={'50px'} width={'50px'} className={"rounded-circle"} />
+                <img src={data.friends[0].profile.image} height={'50px'} width={'50px'} className={"rounded-circle"} />
                 <div className="d-flex flex-column align-items-start ms-4">
-                    <h6 className={new_msg_count > 0 ? "text-primary chat-group-name p-3" : "chat-group-name p-3"}>{data.friend.first_name}</h6>
+                    <ResponsiveEllipsis
+                        text={concatNames()}
+                        maxLine='2'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                        className={new_msg_count > 0 ? "text-primary chat-group-name px-3" : "chat-group-name px-3"}
+                    />
                     <small className={new_msg_count > 0 ? "text-primary px-3" : "px-3"}>{data.message}</small>
                 </div>
             </div>
@@ -92,17 +125,23 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0, setSelectedChatInd
         {/* PROFILE MODAL */}
         <Modal show={showProfile} onHide={() => setShowProfile(false)} centered>
             <Modal.Header closeButton>
-                <Modal.Title>Neighbor Profile</Modal.Title>
+                <Modal.Title>Neighbor Profiles</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="d-flex justify-content-between align-items-center">
-                    <h5 className="m-2">Name: <strong>{data.friend.name}</strong></h5>
+                <div className="d-flex justify-content-between align-items-center"><ResponsiveEllipsis
+                    text={concatNames()}
+                    maxLine='2'
+                    ellipsis='...'
+                    trimRight
+                    basedOn='letters'
+                    className={new_msg_count > 0 ? "text-primary chat-group-name px-3" : "chat-group-name px-3"}
+                />
                     <div className="d-flex justify-content-center align-items-end" style={{ width: "40%" }}>
-                        <img src={data.friend.profile.image} height={'80px'} className={"rounded-circle"} />
+                        <img src={data.friends[0].profile.image} height={'80px'} className={"rounded-circle"} />
                     </div>
                 </div>
-                <p className="m-2">Unit: <strong>{}</strong></p>
-                <p className="m-2">Building: <strong>{}</strong></p>
+                <p className="m-2">Unit: <strong>{ }</strong></p>
+                <p className="m-2">Building: <strong>{ }</strong></p>
                 <p className="m-2">Phone #: <strong>514 123 9876</strong></p>
                 <p className="m-2">Member since: <strong>{date.toDateString()}</strong></p>
 
@@ -141,4 +180,4 @@ const ChatUserListItem = ({ data, onClick, new_msg_count = 0, setSelectedChatInd
 
 }
 
-export { ChatUserListItem };
+export { ChatGroupListItem };

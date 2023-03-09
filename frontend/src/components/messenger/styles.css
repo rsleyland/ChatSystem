@@ -107,3 +107,8 @@
 .selected-neighbor:hover {
     background-color: rgba(0,100,0,0.4);
 }
+.chat-group-name {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}

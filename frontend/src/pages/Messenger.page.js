@@ -9,7 +9,8 @@ import axios from 'axios';
 import { ChatWindow } from "../components/messenger/ChatWindow";
 import { MESSENGER_NOTIFICATIONS_SUCCESS } from '../redux/constants/messengerConstants'
 import { FriendModalListItem } from "../components/messenger/FriendModalListItem";
-
+import { ChatGroupListItem } from "../components/messenger/ChatGroupListItem";
+import { ChatGroupWindow } from "../components/messenger/ChatGroupWindow";
 
 
 let favourites = [
@@ -351,12 +352,22 @@ const Messenger = () => {
                             }
                             let unseen_msg_count = chat.messages.filter(m => m.read === false && m.from_user != userInfo.id && m.deleted_by.findIndex(u => u.id == userInfo.id) == -1).length
 
-                            // return <ChatUserListItem new_msg_count={unseen_msg_count} onClick={() => handleChatUserListItemSelected(i)} key={"chat-list-item-" + i} data={{ name: chat.user.name, message: lastMessage, time: chat.lastReceived }} />
+
+                            if (chat.participants.length > 1) {
+                                return <ChatGroupListItem
+                                    new_msg_count={unseen_msg_count}
+                                    onClick={() => handleChatUserListItemSelected(i)}
+                                    key={"chat-list-item-" + i}
+                                    data={{ friends: chat.participants, message: lastMessage, time: time, chat_name: chat.name, chats: chats }}
+                                    setSelectedChatIndex={setSelectedChatIndex}
+                                />
+                            }
                             return <ChatUserListItem
                                 new_msg_count={unseen_msg_count}
                                 onClick={() => handleChatUserListItemSelected(i)}
                                 key={"chat-list-item-" + i}
-                                data={{ user: chat.participants[0], message: lastMessage, time: time, chat_name: chat.name, chats: chats }}
+                                data={{ friend: chat.participants[0], message: lastMessage, time: time, chat_name: chat.name, chats: chats }}
+                                setSelectedChatIndex={setSelectedChatIndex}
                             />
 
                         }) : loading ? <Spinner animation="border" size="xl" className={"input-loading-icon text-primary"} /> :
@@ -397,7 +408,7 @@ const Messenger = () => {
                             />
                         </div>
                         {filteredUsers && filteredUsers.map((user, i) => {
-                            return <FriendListItem key={`friend-list-item-${i}`} i={i} handleAddChat={handleAddChat} data={{...user}} />
+                            return <FriendListItem key={`friend-list-item-${i}`} i={i} handleAddChat={handleAddChat} data={{ ...user }} />
                         })}
 
 
@@ -438,10 +449,13 @@ const Messenger = () => {
                 {/* MAIN CHAT COLUMN */}
                 <Col xs={12} lg={8} className={selectedChatIndex === -1 && "d-none d-lg-block"} style={{ position: 'relative' }}>
 
-                    {_chats && _chats.length > 0 && selectedChatIndex >= 0 ?
+                    {_chats && _chats.length > 0 && selectedChatIndex >= 0 ? <>
+                        {_chats[selectedChatIndex].participants.length > 1 ?
 
-                        <ChatWindow friend={_chats[selectedChatIndex].participants[0]} chat_name={_chats[selectedChatIndex].name} setSelectedChatIndex={setSelectedChatIndex} />
-
+                            <ChatGroupWindow friends={_chats[selectedChatIndex].participants} chat_name={_chats[selectedChatIndex].name} setSelectedChatIndex={setSelectedChatIndex} />
+                            :
+                            <ChatWindow friend={_chats[selectedChatIndex].participants[0]} chat_name={_chats[selectedChatIndex].name} setSelectedChatIndex={setSelectedChatIndex} />}
+                    </>
                         :
 
                         <div className="d-flex flex-column align-items-center justify-content-center h-100">
@@ -475,8 +489,8 @@ const Messenger = () => {
                         {filteredUsers && filteredUsers.map((user, i) => {
                             return (
                                 <div key={`user-add-chat-item-${i}`} role={'button'} onClick={() => handleToggleListItem(i)}>
-                                    <FriendModalListItem active={selectedUsers[0] == i} key={`friend-modal-list-item-${i}`} i={i} data={{...user}} />
-                                    </div>)
+                                    <FriendModalListItem active={selectedUsers[0] == i} key={`friend-modal-list-item-${i}`} i={i} data={{ ...user }} />
+                                </div>)
                         })}
 
                     </div>
@@ -515,7 +529,7 @@ const Messenger = () => {
                             {filteredUsers && filteredUsers.map((user, i) => {
                                 return (
                                     <div key={`user-add-group-chat-item-${i}`} role={'button'} onClick={() => handleToggleListItem(i, true)}>
-                                        <FriendModalListItem active={selectedUsers.includes(i)} key={`friend-group-modal-list-item-${i}`} i={i} data={{...user}} /></div>)
+                                        <FriendModalListItem active={selectedUsers.includes(i)} key={`friend-group-modal-list-item-${i}`} i={i} data={{ ...user }} /></div>)
                             })}
 
                         </div>

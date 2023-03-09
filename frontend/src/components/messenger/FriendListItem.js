@@ -10,7 +10,7 @@ const FriendListItem = ({ data, handleAddChat, i }) => {
     return (<>
         <div className="d-flex align-items-center justify-content-between w-100 p-2 px-4 px-lg-3 border-bottom border-1 hover-chat-item-friends">
             <div className="d-flex align-items-center">
-                <img src={data.profile.image} height={'50px'} className="rounded-circle no-select-hl" />
+                <img src={data.profile.image} height={'50px'} width={'50px'} className="rounded-circle no-select-hl" />
                 <div className="d-flex flex-column align-items-start ms-4">
                     <h6 className="no-select-hl text-white">{data.first_name}</h6>
                 </div>
@@ -41,7 +41,7 @@ const FriendListItem = ({ data, handleAddChat, i }) => {
                 <div className="d-flex justify-content-between align-items-center">
                     <h5 className="m-2">Name: <strong>{data.first_name}</strong></h5>
                     <div className="d-flex justify-content-center align-items-end" style={{ width: "40%" }}>
-                        <img src={data.image} height={'80px'} className="rounded-circle" />
+                        <img src={data.profile.image} height={'80px'} width={'80px'} className="rounded-circle" />
                     </div>
                 </div>
                 <p className="m-2">Unit: <strong>{}</strong></p>
