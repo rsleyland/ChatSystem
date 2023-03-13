@@ -45,13 +45,14 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin','is_active','is_staff','is_superuser')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'password_reset_code', 'email_confirmation_code')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'password_reset_code', 'email_confirmation_code', 'last_login')}),
         ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_superuser', 'is_active', 'email_confirmed')}),
     )
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
     actions = [set_active, set_inactive]
+    readonly_fields = ['last_login']
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
