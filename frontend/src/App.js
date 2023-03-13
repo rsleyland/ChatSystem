@@ -9,7 +9,6 @@ import { ConfirmEmail } from './pages/Auth/ConfirmEmail.page.js';
 import { Settings } from './pages/Settings.page.js';
 import { AxiosResponseInterceptor, AxiosRequestInterceptor } from './AxiosConfig.js';
 
-
 function App() {
   AxiosRequestInterceptor();
   AxiosResponseInterceptor();

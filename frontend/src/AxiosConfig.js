@@ -2,6 +2,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { USER_IN_STORAGE, USER_LOGIN_SUCCESS } from "./redux/constants/userConstants";
 
+
 // axios config utilty function
 const GenerateAxiosConfig = () => {
     if (localStorage.getItem(USER_IN_STORAGE)) {
@@ -56,7 +57,7 @@ const AxiosRequestInterceptor = () => {
         else request.headers['Content-Type'] = 'application/json';
         if (localStorage.getItem(USER_IN_STORAGE)) {
             request.headers['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem(USER_IN_STORAGE)).access}`;
-        } 
+        }
         return request;
     }, function (error) {
         console.log("ERROR: ", error);
