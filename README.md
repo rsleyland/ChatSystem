@@ -38,7 +38,7 @@
 - ```docker run -p 6379:6379 -d redis:5```
 
 
-### :information_source: Steps (docker)
+### :information_source: Steps (Docker - must have docker installed)
 
 - ```git clone git@github.com:rsleyland/ChatSystem.git```
 - ```cd ChatSystem```
