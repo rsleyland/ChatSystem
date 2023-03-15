@@ -12,6 +12,10 @@
 ##### Backend
 - Django (DRF)
 - Redis
+- Channels
+- Daphne
+- Cors
+- Whitenoise
 - JWT (http only cookies)
 
 ### :information_source: Steps (manual)
