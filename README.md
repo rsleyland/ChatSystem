@@ -41,6 +41,7 @@
 ### :information_source: Steps (docker)
 
 - ```git clone git@github.com:rsleyland/ChatSystem.git```
+- ```cd ChatSystem```
 - ```git checkout dockered```
 - ```docker-compose build```
 - ```docker-compose-up```
