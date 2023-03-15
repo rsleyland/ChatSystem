@@ -25,6 +25,7 @@
 ##### Frontend
 - ```cd ChatSystem\frontend```
 - ```npm start```
+- running on localhost:3000
 
 ##### Backend
 
@@ -33,6 +34,7 @@
 - ```myenv\Scripts\activate```
 - ```pip install -r requirements.txt```
 - ```python manage.py runserver```
+- running on localhost:8000
 
 ##### Redis (must have docker installed)
 - ```docker run -p 6379:6379 -d redis:5```
@@ -45,3 +47,6 @@
 - ```git checkout dockered```
 - ```docker-compose build```
 - ```docker-compose-up```
+- backend running on localhost:8000
+- frontend running on localhost:3000
+- redis running on localhost:6379
