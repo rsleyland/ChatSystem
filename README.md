@@ -1,7 +1,7 @@
 # :star: Realtime Chat System :star:
 
 ### :earth_americas: Example
-```https://achat.herokuapp.com```  (allow 1 min to start as will idle when inactive)
+[https://achat.herokuapp.com](https://achat.herokuapp.com)  (allow 1 min to start as will idle when inactive)
 
 ### :computer: Tech
 ##### Frontend
