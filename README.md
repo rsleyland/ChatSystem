@@ -1,8 +1,8 @@
 # Realtime Chat System
 ### :earth_americas: Example
-[https://achat.herokuapp.com](https://achat.herokuapp.com)  (allow 1 min to start as will idle when inactive)
+[https://easychats.herokuapp.com](https://easychats.herokuapp.com)  (allow 1 min to start as will idle when inactive)
 
-Test accounts: [{acc1@achat.com, test.123}, {acc2@achat.com, test.123}]
+Test accounts: [{acc1@easychats.com, test.123}, {acc2@easychats.com, test.123}]
 
 ### :computer: Tech
 ##### Frontend
