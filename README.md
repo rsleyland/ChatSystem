@@ -26,7 +26,7 @@ Test accounts: [{acc1@easychats.com, test.123}, {acc2@easychats.com, test.123}]
 ##### Frontend
 - ```cd ChatSystem\frontend```
 - ```npm start```
--  running on localhost:3000
+- running on localhost:3000
 
 ##### Backend
 
