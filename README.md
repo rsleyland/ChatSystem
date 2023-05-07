@@ -35,7 +35,7 @@ Test accounts: [{acc1@easychats.com, test.123}, {acc2@easychats.com, test.123}]
 - ```myenv\Scripts\activate```
 - ```pip install -r requirements.txt```
 - ```python manage.py runserver```
-- running on localhost:8000
+-  running on localhost:8000
 
 ##### Redis (must have docker installed)
 - ```docker run -p 6379:6379 -d redis:5```
